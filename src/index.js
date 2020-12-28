@@ -23,8 +23,13 @@ const main = async () => {
   await client.Page.enable()
   const detectingScript = await client.Page.addScriptToEvaluateOnNewDocument({
     source: `
-      console.log(Notification.permission)
-      navigator.permissions.query({ name: "notifications" }).then(console.log)
+      console.log("Notification.permission", Notification.permission)
+      navigator.permissions.query({ name: "notifications" })
+        .then(query => console.log("query", query))
+        .catch(query => console.error("query", query))
+      Notification.requestPermission()
+        .then(request => console.log("request", request))
+        .catch(request => console.error("request", request))
     `,
   })
 
