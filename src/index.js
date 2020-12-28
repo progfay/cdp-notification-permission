@@ -1,7 +1,7 @@
 const CDP = require('chrome-remote-interface')
 
 const main = async () => {
-  const url = 'http://localhost:8000'
+  const url = 'https://github.com/'
   const client = await CDP({
     port: 9222,
     host: process.env.CHROME_HOST ?? 'localhost',
@@ -29,6 +29,7 @@ const main = async () => {
         .catch(query => console.error("query", query))
       Notification.requestPermission()
         .then(request => console.log("request", request))
+        .then(() => console.log("Notification.permission2", Notification.permission))
         .catch(request => console.error("request", request))
     `,
   })
