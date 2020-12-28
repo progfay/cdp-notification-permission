@@ -6,14 +6,33 @@ const main = async () => {
     port: 9222,
     host: process.env.CHROME_HOST ?? 'localhost',
   })
-  await client.Log.entryAdded(console.log)
-  await client.Log.enable()
+
+  await client.Browser.setPermission({
+    permission: {
+      name: 'notifications',
+    },
+    setting: 'granted',
+    // setting: 'prompt',
+    // setting: 'denied',
+  })
+
+  await client.Runtime.enable()
+  await client.Runtime.consoleAPICalled(({ args }) => {
+    console.log(JSON.stringify(args, undefined, 2))
+  })
   await client.Page.enable()
+  const detectingScript = await client.Page.addScriptToEvaluateOnNewDocument({
+    source: `
+      console.log(Notification.permission)
+      navigator.permissions.query({ name: "notifications" }).then(console.log)
+    `,
+  })
 
   await client.Page.navigate({ url })
   await client.Page.loadEventFired()
 
-  await client.Log.disable()
+  await client.Page.removeScriptToEvaluateOnNewDocument(detectingScript)
+  await client.Runtime.disable()
   await client.Page.disable()
   await client.close()
 }
