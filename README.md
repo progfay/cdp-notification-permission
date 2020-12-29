@@ -1,4 +1,4 @@
-# cdp-template
+# cdp-notification-permission
 
 Template Repository with Chrome DevTools Protocol
 
