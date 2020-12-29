@@ -1,6 +1,69 @@
 # cdp-notification-permission
 
-Template Repository with Chrome DevTools Protocol
+## Output
+
+```js
+[
+  {
+    "type": "string",
+    "value": "Notification.permission"
+  },
+  {
+    "type": "string",
+    "value": "denied"
+  }
+]
+[
+  {
+    "type": "string",
+    "value": "query"
+  },
+  {
+    "type": "object",
+    "className": "PermissionStatus",
+    "description": "PermissionStatus",
+    "objectId": "-7003650536473411300.2.1",
+    "preview": {
+      "type": "object",
+      "description": "PermissionStatus",
+      "overflow": false,
+      "properties": [
+        {
+          "name": "state",
+          "type": "string",
+          "value": "granted"
+        },
+        {
+          "name": "onchange",
+          "type": "object",
+          "value": "null",
+          "subtype": "null"
+        }
+      ]
+    }
+  }
+]
+[
+  {
+    "type": "string",
+    "value": "request"
+  },
+  {
+    "type": "string",
+    "value": "granted"
+  }
+]
+[
+  {
+    "type": "string",
+    "value": "Notification.permission2"
+  },
+  {
+    "type": "string",
+    "value": "denied"
+  }
+]
+```
 
 ## Usage
 
