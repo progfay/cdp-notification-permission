@@ -1,7 +1,7 @@
 const CDP = require('chrome-remote-interface')
 
 const main = async () => {
-  const url = 'https://github.com/'
+  const url = 'http://localhost'
   const client = await CDP({
     port: 9222,
     host: process.env.CHROME_HOST ?? 'localhost',
